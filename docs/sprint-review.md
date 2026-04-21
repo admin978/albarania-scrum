@@ -4,9 +4,9 @@
 [fecha]
 
 ## Asistentes
-- Product Owner: [nombre]
-- Scrum Master: [nombre]
-- Developers: [nombre], [nombre]
+- Lorena López Bermúdez — rol TBD
+- Marcos García Manzano — rol TBD
+- Camilo — rol TBD
 - Stakeholders (otros grupos de clase)
 
 ## Sprint Goal

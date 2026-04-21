@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black}
+\titlespacing*{\section}{0pt}{1.2ex}{0.6ex}
+\titlespacing*{\subsection}{0pt}{0.9ex}{0.4ex}
+\setlist{nosep}
+
+\title{\textbf{AlbaranIA} — Informe Sprint 1 \\ \large Metodologías Ágiles · Universidad Europea}
+\author{Lorena López Bermúdez \and Marcos García Manzano \and Camilo}
+\date{Abril 2026}
+
+\begin{document}
+\maketitle
+
+\section{Contexto y objetivo}
+\textbf{AlbaranIA} es una plataforma SaaS multi-tenant para digitalizar albaranes de proveedores mediante IA (GPT-4o Vision). El objetivo académico de este sprint es aplicar Scrum en un equipo reducido (3 personas) documentando Planning, Dailies, Review y Retrospectiva, y entregar un incremento funcional acotado a la base del sistema (autenticación, catálogos y panel).
+
+\section{Equipo y roles}
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Miembro} & \textbf{Rol Scrum} \\
+\midrule
+Lorena López Bermúdez & TBD \\
+Marcos García Manzano & TBD \\
+Camilo & TBD \\
+\bottomrule
+\end{tabular}
+
+\section{Product Backlog}
+Organizado en 6 épicas, priorizadas de Alta a Baja:
+
+\begin{itemize}
+\item \textbf{E1 Autenticación y usuarios} (Alta): empresa, usuarios, login JWT, roles.
+\item \textbf{E2 Catálogos} (Alta): CRUD y carga masiva de proveedores y artículos.
+\item \textbf{E3 OCR} (Alta): subida de albaranes, extracción con IA, revisión.
+\item \textbf{E4 Validación} (Media): máquina de estados, gate de ingeniería, auditoría.
+\item \textbf{E5 Facturación} (Media): agrupación, PDF, exportación ERP.
+\item \textbf{E6 Dashboard} (Baja): métricas y reporting.
+\end{itemize}
+
+El backlog completo (15 historias) vive en \texttt{docs/product-backlog.md}.
+
+\section{Sprint Planning}
+\subsection{Sprint Goal}
+\emph{``Construir la base: alta de empresa, usuarios, proveedores y login funcional.''}
+
+\subsection{Historias seleccionadas}
+
+\begin{tabular}{lllcl}
+\toprule
+\textbf{Jira} & \textbf{ID} & \textbf{Historia} & \textbf{SP} & \textbf{Asignado} \\
+\midrule
+ALB-1 & US-01 & Crear empresa en la plataforma       & 5 & Lorena \\
+ALB-2 & US-02 & Alta de usuarios con roles           & 3 & Lorena \\
+ALB-3 & US-03 & Login con email y contraseña         & 3 & Marcos \\
+ALB-4 & US-04 & Panel principal con navegación por rol & 3 & Camilo \\
+ALB-5 & US-05 & CRUD de proveedores                  & 3 & Marcos \\
+ALB-6 & US-06 & Importación de proveedores desde CSV & 5 & Camilo \\
+\midrule
+\multicolumn{3}{r}{\textbf{Total}} & \textbf{22} & \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.3em}
+Reparto por persona: Lorena 8 SP · Marcos 6 SP · Camilo 8 SP.
+
+\section{Ejecución del Sprint}
+\subsection{Daily Scrums}
+Dailies de 5 min por Slack \texttt{\#scrum}. Se celebraron 4 dailies durante el sprint (2026-04-21 → 2026-04-29). Impedimentos destacados: decisión de librería JWT (Marcos), encoding de CSV en US-06 (Camilo), conflicto de rutas frontend en US-04 (Camilo). Todos resueltos intra-sprint.
+
+\subsection{Herramientas}
+Jira (tablero \texttt{ALB}, board 133), GitHub (repo \texttt{albarania-scrum}, rama \texttt{master}), Slack (workspace UE — Metodologías Ágiles), LaTeX para el informe. Convención de ramas \texttt{feature/US-XX-*} y commits en español (\texttt{feat:}, \texttt{fix:}, \texttt{docs:}).
+
+\section{Sprint Review}
+Resultado: todas las historias (US-01..US-06) cerradas cumpliendo Definition of Done. Velocity = 22/22 SP (100\%). Feedback recibido del resto de grupos:
+\begin{itemize}
+\item Añadir exportación de proveedores a CSV (complemento a US-06).
+\item Buscador global en el panel.
+\item Flujo login-panel valorado positivamente.
+\end{itemize}
+Se incorpora al backlog \textbf{US-16: exportar proveedores a CSV} y se re-prioriza \textbf{US-09 (OCR)} como primera historia del Sprint 2.
+
+\section{Retrospectiva}
+\textbf{Start:} definir criterios de aceptación en Planning, no durante la ejecución.\\
+\textbf{Stop:} sobre-estimar historias que dependen de formatos externos (CSV/encoding).\\
+\textbf{Continue:} dailies breves, tablero Jira como única fuente de verdad, pair-review en PRs.
+
+\section{Conclusiones}
+El equipo completó el Sprint Goal respetando la capacidad estimada. Scrum aportó cadencia predecible y detección temprana de bloqueos mediante dailies. Lección clave: los criterios de aceptación ambiguos son el principal riesgo de desviación; trasladarlos a la fase de Planning reduce la fricción en ejecución. La velocity de 22 SP será la referencia para planificar Sprint 2.
+
+\end{document}

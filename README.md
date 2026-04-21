@@ -6,16 +6,17 @@ Simulación de un sprint Scrum completo para construir **AlbaranIA**: una plataf
 
 ## Equipo
 
-| Rol | Nombre |
-|-----|--------|
-| Product Owner | TBD |
-| Scrum Master | TBD |
-| Developer | TBD |
-| Developer | TBD |
+| Miembro | Rol |
+|---------|-----|
+| Lorena López Bermúdez | TBD |
+| Marcos García Manzano | TBD |
+| Camilo | TBD |
+
+> Roles (PO / SM / Dev) por asignar entre los 3 miembros.
 
 ## Herramientas
 
-- **Jira**: [enlace al tablero]
+- **Jira**: https://agente404.atlassian.net/jira/software/projects/ALB/boards/133
 - **Slack**: UE - Metodologías Ágiles/Scrum
 - **Informe**: `docs/informe/`
 
