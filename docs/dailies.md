@@ -61,3 +61,27 @@ Equipo: Lorena, Marcos, Camilo · Duración objetivo: 5 min · Canal: Slack #scr
 | Camilo  | Sin avances reportados | — | Sin contacto en toda la semana |
 
 **Decisión de equipo:** Lorena hablará con Omar para gestionar la situación de Camilo de cara a la entrega. Si no hay respuesta antes del 2026-04-29, ALB-4 y ALB-6 entrarán en el Sprint Retrospective como impedimento crítico y se documentará en el informe.
+
+---
+
+## Daily 6 — 2026-04-28
+
+| Miembro | ¿Qué hice ayer? | ¿Qué haré hoy? | Impedimentos |
+|---------|-----------------|----------------|--------------|
+| Lorena  | ALB-2 al 80%, integrado con `requireRole` de Marcos | Cerrar ALB-2 y abrir borrador del informe LaTeX | Ninguno |
+| Marcos  | ALB-5 funcional (CRUD + soft delete + paginación) | Cerrar ALB-5 (búsqueda por nombre) y preparar Sprint Review | Ninguno |
+| Camilo  | Sin avances reportados | — | Sin contacto; Lorena escala formalmente a Omar por Slack |
+
+**Notas:** Omar responde por Slack a las 19:30 confirmando que se puede documentar la ausencia como impedimento crítico y que ALB-4/ALB-6 vuelven a backlog sin penalizar la nota grupal. Marcos avisa al equipo en `#scrum`.
+
+---
+
+## Daily 7 — 2026-04-29
+
+| Miembro | ¿Qué hice ayer? | ¿Qué haré hoy? | Impedimentos |
+|---------|-----------------|----------------|--------------|
+| Lorena  | ALB-2 cerrada con validaciones + tests manuales | Sprint Review + Retrospectiva + cierre del informe | Ninguno |
+| Marcos  | ALB-5 cerrada (búsqueda + paginación + filtrado) | Apoyar review/retro y empezar a sondear US-09 (FastAPI/OCR) | Ninguno |
+| Camilo  | Sin avances reportados | — | Ausencia confirmada; impedimento documentado |
+
+**Notas:** último día del Sprint 1. Velocity real = 14/22 SP (64%). Review y retro a las 17:00 con Omar presente. Se acuerda volcar US-04 y US-06 al Product Backlog con prioridad alta y re-priorizarlas en el Planning del Sprint 2.

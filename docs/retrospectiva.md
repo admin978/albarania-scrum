@@ -1,45 +1,65 @@
 # Retrospectiva — Sprint 1
 
 ## Fecha
-[fecha]
+2026-04-29 (tras Sprint Review, sesión de 45 min)
+
+## Asistentes
+Lorena, Marcos. Camilo no asistió (ausencia documentada). Omar (profesor) presente como observador en los primeros 10 min.
 
 ## Formato
-Start / Stop / Continue
+Start / Stop / Continue + plan de acciones con responsable y plazo.
 
 ---
 
 ## ✅ ¿Qué fue bien?
-- La comunicación por Slack fue fluida; los canales bien organizados ayudaron.
-- El tablero de Jira nos mantuvo alineados sobre el estado de cada historia.
-- Las dailies de 5 minutos fueron efectivas para detectar bloqueos rápido.
-- Completamos el 100% de los story points planificados.
+- Comunicación Lorena↔Marcos: alta frecuencia en Slack, reuniones cortas pero efectivas.
+- Tablero Jira (ALB) mantenido al día: cualquiera podía ver el estado en menos de un minuto.
+- Decisiones técnicas resueltas rápido (JWT con `jsonwebtoken`, `requireRole` reutilizable).
+- Las 4 historias de los miembros activos (US-01, US-02, US-03, US-05) cerradas con DoD.
+- Escalado del impedimento Camilo gestionado a tiempo: avisamos a Omar en el día 8 y obtuvimos respuesta antes del cierre.
 
 ## ❌ ¿Qué no fue bien?
-- Al inicio del sprint, algunas historias no tenían criterios de aceptación claros, lo que generó dudas.
-- La historia US-06 (importación CSV) era más compleja de lo estimado; el encoding de archivos dio problemas.
-- Faltó definir un Definition of Done explícito desde el principio.
+- **Bus factor de 1 en historias asignadas:** US-04 y US-06 dependían 100% de Camilo, sin plan B. Cuando dejó de responder, no había forma de redistribuir sin desbordar al resto.
+- **Detección tardía de la ausencia:** se asumió 4 días que volvería a aparecer antes de tomar medidas. La regla de "esperar al siguiente daily" no escala cuando un miembro no se conecta.
+- **Arranque lento:** los primeros 6 días la curva se mantuvo plana en 22 SP. La mayor parte del trabajo se concentró en los 3 últimos días (efecto hockey-stick).
+- **Criterios de aceptación incompletos al inicio:** US-04 y US-06 entraron al sprint con bullets vagos. Si Camilo hubiera estado, tampoco habría sido fácil verificarlas.
+- **Sin tests automáticos:** todo se validó con pruebas manuales. Para Sprint 2 (OCR) eso no es viable.
 
-## 💡 ¿Qué podemos mejorar?
+## 💡 Acciones de mejora
 
-### Acción de mejora 1
-**Problema:** Historias de usuario con criterios de aceptación poco definidos.
-**Acción:** En el próximo Sprint Planning, dedicar 5 minutos por historia a escribir los criterios de aceptación antes de empezar a desarrollar.
-**Responsable:** Product Owner
-**Plazo:** Desde el Sprint 2
+### Acción 1 — Política de re-asignación si un miembro no responde
+**Problema:** US-04 y US-06 quedaron huérfanas durante 7 días sin acción correctiva.
+**Acción:** Definir umbral: si un miembro no se conecta a 2 dailies seguidos sin previo aviso, el SM convoca reunión de re-planificación al día siguiente. Las historias asignadas se devuelven a backlog o se reparten entre quien tenga capacidad.
+**Responsable:** Marcos (Scrum Master)
+**Plazo:** Sprint 2, Day 1 (2026-04-30) — documentado en `sprint-2-planning.md`.
 
-### Acción de mejora 2
-**Problema:** Estimación incorrecta de US-06 (se estimó en 5 SP pero requirió más esfuerzo).
-**Acción:** Usar Planning Poker en el siguiente sprint para contrastar estimaciones entre todos y detectar historias que necesiten descomponerse.
-**Responsable:** Scrum Master
-**Plazo:** Desde el Sprint 2
+### Acción 2 — Pareo en historia ancla del Sprint 2
+**Problema:** Si Marcos cae con US-09 (OCR, 8 SP), el sprint se hunde igual que pasó con Camilo.
+**Acción:** Pareo Lorena↔Marcos en US-09 al menos en la fase de spike técnico (esqueleto FastAPI + schema). Sesiones cortas y documentadas en `sprint-2-dailies.md`.
+**Responsable:** Equipo (Lorena + Marcos)
+**Plazo:** Sprint 2, Day 3 (2026-05-02).
 
-### Acción de mejora 3 (bonus)
-**Problema:** No teníamos un Definition of Done formal.
-**Acción:** Definir y documentar un DoD que incluya: código funcional, revisión por un compañero, tests básicos y documentación actualizada.
-**Responsable:** Todo el equipo
-**Plazo:** Antes del Sprint 2
+### Acción 3 — Tests unitarios mínimos en US-09
+**Problema:** Validación manual no escala con OCR (latencia + coste GPT-4o + variación de input).
+**Acción:** Añadir `pytest` con al menos: (a) test de health, (b) test del schema Pydantic `AlbaranExtraido` con fixture válida e inválida, (c) test de extracción de la cola con mock de OpenAI.
+**Responsable:** Marcos
+**Plazo:** Antes del Sprint Review del Sprint 2 (2026-05-13).
+
+### Acción 4 — Refinar criterios de aceptación de US-04 y US-06 antes de re-priorizar
+**Problema:** Las dos historias devueltas al backlog no son ejecutables tal como están.
+**Acción:** En el Refinement de Sprint 2 (Day 4, 2026-05-03), reescribir cada historia con criterios verificables, mockup y definición técnica básica.
+**Responsable:** Lorena (PO)
+**Plazo:** 2026-05-03.
+
+### Acción 5 — Daily de 5 min con regla de "no avance = decisión"
+**Problema:** Daily 2 a 5 todos reportaron "sin avances de Camilo" sin tomar acción.
+**Acción:** Cualquier impedimento que aparezca en 2 dailies seguidos sin resolución se convierte en decisión obligatoria del equipo en ese segundo daily, no más tarde.
+**Responsable:** Marcos (Scrum Master)
+**Plazo:** Sprint 2, desde Day 1.
 
 ---
 
 ## Resumen
-El sprint fue exitoso en términos de entrega (100% de SP completados), pero identificamos margen de mejora en la definición de historias y en la precisión de las estimaciones. Las acciones propuestas son concretas y aplicables desde el siguiente sprint.
+Sprint 1 cerró con 14/22 SP entregados (64%). El equipo activo cumplió DoD en todas sus historias. La incidencia central fue la ausencia no comunicada de un miembro, que costó 8 SP y dejó dos historias core sin terminar. Las 5 acciones acordadas atacan el problema de raíz (políticas de equipo + tests + refinamiento) y deben aplicarse desde el Day 1 del Sprint 2.
+
+La lección principal: **sin redundancia, una baja silenciosa equivale a perder un tercio del sprint**. Sprint 2 incorpora pareo y políticas explícitas para que esto no vuelva a pasar.
