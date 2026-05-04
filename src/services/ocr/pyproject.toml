@@ -1,0 +1,9 @@
+[project]
+name = "albarania-ocr"
+version = "0.1.0"
+description = "AlbaranIA OCR microservice — FastAPI + arq + GPT-4o Vision"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
