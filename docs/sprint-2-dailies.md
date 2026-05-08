@@ -62,10 +62,52 @@ Equipo activo: Lorena, Marcos · Camilo: ausente, sin contacto · Duración obje
 
 ---
 
-## Pendiente para días 6–10
-- 2026-05-05 (Day 6): Marcos descarga 3 albaranes reales y valida prompt.
-- 2026-05-06 (Day 7): primer end-to-end OCR (subir → JSON válido).
-- 2026-05-07 (Day 8): Lorena cierra US-11 backend.
-- 2026-05-08 (Day 9): tests con mock OpenAI verdes; Marcos prepara demo.
-- 2026-05-11–12 (Day 12–13): code freeze + smoke E2E.
+## Daily 6 — 2026-05-05
+
+| Miembro | ¿Qué hice ayer? | ¿Qué haré hoy? | Impedimentos |
+|---------|-----------------|----------------|--------------|
+| Lorena  | Recibí el schema `AlbaranExtraido` por Slack | Arrancar US-11 backend (`GET /api/albaranes/pendientes`) con filtro `empresa_id` desde JWT | Ninguno |
+| Marcos  | Schema congelado y compartido con Lorena | Descargar 3 albaranes de muestra y validar prompt GPT-4o sobre ellos | Necesito decidir si uso muestras propias o pido a Omar acceso a fixtures de la práctica |
+
+**Notas:** Marcos opta por generar 3 PDFs sintéticos representativos (logística, construcción, alimentación) para no bloquearse esperando a Omar. Prompt iterado 4 veces hasta que las 3 pruebas devuelven JSON conforme al schema con `confianza_extraccion ≥ 0.85`. Camilo: sin contacto.
+
+---
+
+## Daily 7 — 2026-05-06
+
+| Miembro | ¿Qué hice ayer? | ¿Qué haré hoy? | Impedimentos |
+|---------|-----------------|----------------|--------------|
+| Lorena  | Endpoint `GET /api/albaranes/pendientes` esqueletado en backend Node | Filtrado por `estado='pendiente_revision'` + paginación + tests manuales con Postman | Ninguno |
+| Marcos  | Prompt validado contra 3 PDFs sintéticos | Primer E2E manual: subir PDF → encolar arq → llamar GPT-4o → cachear resultado en Redis | Ninguno |
+
+**Notas:** Primer end-to-end OCR funcional en local a las 17:40. PDF de 1 página procesado en 18 segundos (dentro del objetivo de 30 s). El JSON devuelto encaja con el schema sin coerción manual. Detectado un edge case: cuando GPT-4o devuelve unidades fuera del set cerrado (ej. "uds." en vez de "ud"), el validador Pydantic lanza error y arq marca el job como `failed`. Marcos abre un TODO para añadir un normalizador de unidades antes de la validación.
+
+---
+
+## Daily 8 — 2026-05-07
+
+| Miembro | ¿Qué hice ayer? | ¿Qué haré hoy? | Impedimentos |
+|---------|-----------------|----------------|--------------|
+| Lorena  | Endpoint pendientes listo + tests Postman verdes | Cierre US-11: review con Marcos, merge a master y abrir mi sección del informe (rol SM) | Ninguno |
+| Marcos  | E2E OCR funcional + TODO normalizador de unidades | Implementar normalizador de unidades + manejo de errores del worker (retry con backoff) | Ninguno |
+
+**Notas:** US-11 backend cerrada a las 12:30. Lorena abre PR; Marcos revisa y mergea. Burndown baja a 8 SP (sólo queda US-09). Tarde: Lorena trabaja en su sección del informe; Marcos endurece el worker (timeouts, captura de excepciones, log estructurado). Pareo corto a las 18:00 para que Lorena entienda el flujo de errores del worker y pueda contarlo en el informe.
+
+---
+
+## Daily 9 — 2026-05-08 (hoy)
+
+| Miembro | ¿Qué hice ayer? | ¿Qué haré hoy? | Impedimentos |
+|---------|-----------------|----------------|--------------|
+| Lorena  | US-11 cerrada + arrancada sección del informe | Continuar informe (sección Scrum Master + métricas Sprint 1) | Ninguno |
+| Marcos  | Normalizador de unidades + retry con backoff en worker | Tests `pytest` con mock OpenAI vía `respx` y preparación de la demo | Ninguno |
+
+**Notas:** Día centrado en cerrar deuda técnica del DoD (tests automáticos) y avanzar el informe. Sin reunión con Omar todavía sobre la consulta de Lorena (alcance de AA1). Plan: si responde antes del Day 12, ajustamos el cierre del informe; si no, entregamos con el alcance actual. Camilo: sin contacto en todo el sprint, ausencia ya documentada como impedimento crítico cerrado.
+
+---
+
+## Pendiente para días 10–14
+- 2026-05-11 (Day 10): tests E2E con fixture real + revisión de logs en Redis.
+- 2026-05-12 (Day 11): demo end-to-end en seco; ajustes finales del informe.
+- 2026-05-12–13 (Day 12–13): code freeze + smoke E2E.
 - 2026-05-13 (Day 14): Sprint Review + Retrospectiva.

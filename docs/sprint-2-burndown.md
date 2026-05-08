@@ -11,20 +11,20 @@ Plan conservador: 13.5 SP por debajo de la velocity de 14 SP del Sprint 1 para a
 | 3   | 2026-05-02  | 13.5 | 0   | — | Pareo Lorena↔Marcos en arquitectura OCR. |
 | 4   | 2026-05-03  | 13.5 | 0   | — | Refinement US-04/US-06 (no cuenta SP). Endpoints listado/edición artículos. |
 | 5   | 2026-05-04  | 10.5 | 3   | US-07 | US-07 cerrada por Lorena. Spike OCR completado salvo prompt-validation. |
-| 6   | 2026-05-05  |      |     |       | Pendiente: validar prompt con 3 PDFs reales. |
-| 7   | 2026-05-06  |      |     |       | Primer E2E OCR esperado. |
-| 8   | 2026-05-07  |      |     |       | Lorena cierra US-11 backend (objetivo). |
-| 9   | 2026-05-08  |      |     |       | Tests con mock OpenAI verdes (objetivo). |
+| 6   | 2026-05-05  | 10.5 | 3   | —     | Prompt GPT-4o validado contra 3 PDFs sintéticos. US-11 arrancada. |
+| 7   | 2026-05-06  | 10.5 | 3   | —     | Primer E2E OCR funcional en local (≈18 s para 1 página). TODO normalizador de unidades. |
+| 8   | 2026-05-07  | 8    | 5.5 | US-11 | US-11 backend mergeada por la mañana. Tarde: hardening worker (timeouts, retries). |
+| 9   | 2026-05-08  | 8    | 5.5 | —     | Normalizador de unidades + retry con backoff. Pendiente tests mock OpenAI. |
 | 10  | 2026-05-13  |      |     |       | Sprint Review + Retrospectiva. |
 
-> Días 6–10 quedan en blanco; se rellenan al final de cada jornada.
+> Días 10–13 se rellenan al final de cada jornada.
 
 ## Referencia ideal (línea recta 13.5 → 0)
 
 | Día | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |-----|---|---|---|---|---|---|---|---|---|----|
 | SP ideales | 12.15 | 10.8 | 9.45 | 8.1 | 6.75 | 5.4 | 4.05 | 2.7 | 1.35 | 0 |
-| SP reales  | 13.5  | 13.5 | 13.5 | 13.5 | 10.5 | — | — | — | — | — |
+| SP reales  | 13.5  | 13.5 | 13.5 | 13.5 | 10.5 | 10.5 | 10.5 | 8 | 8 | — |
 
 ## Lectura preliminar
 
