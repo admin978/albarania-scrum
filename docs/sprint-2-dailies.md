@@ -106,8 +106,22 @@ Equipo activo: Lorena, Marcos · Camilo: ausente, sin contacto · Duración obje
 
 ---
 
-## Pendiente para días 10–14
-- 2026-05-11 (Day 10): tests E2E con fixture real + revisión de logs en Redis.
-- 2026-05-12 (Day 11): demo end-to-end en seco; ajustes finales del informe.
-- 2026-05-12–13 (Day 12–13): code freeze + smoke E2E.
+## Daily 10 — 2026-05-11
+
+| Miembro | ¿Qué hice ayer? | ¿Qué haré hoy? | Impedimentos |
+|---------|-----------------|----------------|--------------|
+| Lorena  | Sección SM del informe (PR #2 con capturas de Jira) + análisis del historial del proyecto | Cerrar Sprint 1 en Jira (ALB-1/2/3/5 a Done, ALB-4/6 al backlog con comentario de devolución) + escribir a Camilo para ofrecerle reincorporación | Sin permisos write directos en el repo → resuelto: invitación de colaboradora enviada hoy |
+| Marcos  | Tests con mock OpenAI vía `respx` + revisión del PR de Lorena con feedback inline | Redactar la sección PO/Developer del informe en rama `feature/seccion-marcos-informe` (sirve también para AA4 como PR cruzado) | Esperando las 10 imágenes de Lorena para integrar su PR sobre el informe principal |
+
+**Notas:**
+- Respuesta de Omar (vía Lorena): AA1 es simulación, basta nivel representativo, no hace falta código funcional completo y el informe es de 6 páginas máximo. Reorienta el cierre: la demo del Sprint Review se centra en mockups y arquitectura, no en E2E completo.
+- Camilo: Lorena le contactará, pero sin asignación activa en Sprint 2 (quedan 3 días laborables y onboardarlo en US-09 a estas alturas pone en riesgo la demo). Plan: refinement de US-10 para Sprint 3.
+- AA4 (Git colaborativo): planificada como (a) PR de Marcos hacia master con la sección PO/Dev → Lorena revisa; (b) PR cruzado de Lorena con capturas → Marcos revisa; (c) edición simultánea de la tabla de roles para provocar conflicto controlado y resolverlo en pareja.
+
+---
+
+## Pendiente para días 11–14
+- 2026-05-12 (Day 11): mergear PR #2 (informe Lorena) + PR #3 (sección Marcos) tras review cruzado. Integrar la sección de Marcos en el informe principal vía `\input`.
+- 2026-05-12 (Day 11): provocar y resolver conflicto de merge controlado (AA4).
+- 2026-05-12–13 (Day 12–13): code freeze + smoke E2E con un albarán real.
 - 2026-05-13 (Day 14): Sprint Review + Retrospectiva.
