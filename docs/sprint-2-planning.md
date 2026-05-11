@@ -4,8 +4,8 @@
 2026-04-30 (jueves) · 16:00–17:30 · vía Google Meet + Slack \#scrum
 
 ## Asistentes
-- Lorena López Bermúdez — Product Owner
-- Marcos García Manzano — Scrum Master + Dev
+- Lorena López Bermúdez — Scrum Master
+- Marcos García Manzano — Product Owner + Developer
 - Camilo — invitado, no asistió (sin respuesta tras intentos por Slack y email)
 
 Omar (profesor) se unió 5 min al inicio para confirmar la decisión sobre US-04/US-06/US-10 acordada en la retrospectiva del 2026-04-29.
