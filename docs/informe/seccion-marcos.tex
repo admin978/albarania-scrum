@@ -1,0 +1,69 @@
+% =============================================================
+% Sección PO + Developer — Marcos García Manzano
+% Fragmento incluido en informe.tex vía \input{seccion-marcos}
+% =============================================================
+
+\section{Decisiones técnicas y arquitectura}
+\label{sec:decisiones-tecnicas}
+
+Esta sección recoge las decisiones técnicas tomadas durante el Sprint~1 y la arquitectura introducida en el Sprint~2, así como las lecciones aprendidas desde el rol de Product Owner y Developer.
+
+\subsection{Stack y patrones transversales del Sprint~1}
+
+El sistema se construyó sobre un stack homogéneo en los dos servicios funcionales del Sprint~1:
+
+\begin{itemize}
+\item \textbf{Backend:} Node.js + Express + Prisma sobre PostgreSQL. Tipado estricto, módulos ES y validación con \texttt{zod} en los handlers.
+\item \textbf{Frontend (mockups y prototipo):} React~18 + Vite + Tailwind. En el Sprint~1 se entregaron como wireframes navegables; la implementación funcional queda fuera del alcance académico del marco Scrum.
+\item \textbf{Autenticación:} JWT firmado con \texttt{HS256}. La clave \texttt{JWT\_SECRET} se comparte entre el backend Node y el servicio OCR Python para que ambos puedan validar el mismo token sin acoplarse a una sesión central.
+\item \textbf{Multi-tenancy lógico:} el aislamiento por empresa se resuelve en la capa de servicio, no a nivel de base de datos. El \texttt{empresa\_id} viaja dentro del payload del JWT y cada endpoint lo extrae del token, nunca del body de la request.
+\item \textbf{Soft delete:} las tablas con datos relevantes (proveedores en este sprint) usan \texttt{deleted\_at} para permitir auditoría y recuperación.
+\end{itemize}
+
+La decisión más cargada de consecuencias fue poner \texttt{empresa\_id} y \texttt{rol} dentro del JWT. Simplifica todo el aislamiento aguas abajo: ni el servicio OCR ni los endpoints de catálogos necesitan resolverlo por otra vía, y la verificación de pertenencia se convierte en una comprobación local sin acceso adicional a la base de datos.
+
+\subsection{Arquitectura del servicio OCR (Sprint~2, US-09)}
+
+US-09 ---el ancla del Sprint~2--- introduce un servicio independiente porque la naturaleza del trabajo (procesamiento asíncrono contra una API externa de IA) no encaja con el modelo síncrono del backend Express. La estructura se cerró durante el spike técnico (Days~1--5) y vive en \texttt{src/services/ocr/}:
+
+\begin{itemize}
+\item \textbf{API FastAPI} con dos endpoints públicos: \texttt{POST /scan} (recibe el binario, encola y devuelve \texttt{job\_id}) y \texttt{GET /scan/status/\{job\_id\}} (polling). La autenticación reutiliza el mismo JWT compartido.
+\item \textbf{Worker arq sobre Redis~7} que consume la cola, llama a GPT-4o Vision con \texttt{temperature=0} y \texttt{top\_p=0.1} para minimizar variabilidad, y cachea el resultado serializado en Redis con TTL configurable.
+\item \textbf{Contrato fuerte vía Pydantic:} el schema \texttt{AlbaranExtraido} con su sub-modelo \texttt{LineaAlbaran} define el JSON que el worker considera válido. Las unidades se coercionan a un set cerrado (\texttt{ud}, \texttt{kg}, \texttt{l}, \texttt{m}, \texttt{caja}, \texttt{palet}) y los campos numéricos se validan en el límite. Si GPT-4o devuelve algo fuera del schema, el job se marca como \texttt{failed} sin contaminar la base de datos.
+\item \textbf{Storage temporal:} en el MVP los binarios subidos viven en \texttt{tmp/} dentro del contenedor del worker. La migración a S3 / Supabase Storage queda como deuda explícita para el Sprint~3.
+\end{itemize}
+
+El servicio se orquesta con \texttt{docker compose} (API + worker + Redis) y arranca en local con un único comando. La validación funcional del Day~7 procesó un PDF de una página en aproximadamente 18~segundos, por debajo del objetivo de 30~s definido en el criterio de éxito del Sprint.
+
+\subsection{Justificación de la re-priorización de US-09}
+
+El Sprint Review del Sprint~1 cerró con dos historias devueltas al backlog (US-04, US-06) y una decisión de producto: subir US-09 a historia ancla del Sprint~2 por encima de continuar con catálogos. La justificación se sostiene sobre tres argumentos:
+
+\begin{enumerate}
+\item \textbf{Valor diferencial.} El OCR es el ``porqué'' de AlbaranIA frente a un ERP cualquiera. Sin extracción IA, la propuesta de valor del producto se queda en un CRUD más.
+\item \textbf{Riesgo concentrado pero gestionable.} US-09 son 8~SP en un único miembro (Marcos), lo que es un \emph{bus factor} de 1. La mitigación se materializó en (a)~el pareo SM$\leftrightarrow$Developer del Day~3 para que Lorena entendiera el flujo completo y pudiera mantener el sprint en marcha en caso de imprevisto, y (b)~un plan~B documentado: si en Day~9 US-09 estaba por debajo del 50\%, US-11 se devolvía al backlog para no contaminar el incremento.
+\item \textbf{Calidad de la decisión empírica.} La velocity del Sprint~1 (14~SP) sirvió como techo realista. Al planificar el Sprint~2 con 13.5~SP se introdujo un 5\% de buffer sobre la velocity histórica, alineado con la recomendación de Scrum de planificar por debajo de la capacidad observada.
+\end{enumerate}
+
+\subsection{Lecciones técnicas del Sprint~1}
+
+Tres aprendizajes técnicos quedaron documentados para no repetirse:
+
+\begin{itemize}
+\item \textbf{Ausencia de tests automáticos.} En el Sprint~1 toda la verificación se hizo manualmente. El criterio funcionó para historias síncronas pequeñas, pero deja de escalar en cuanto entra la cola asíncrona del OCR: validar un flujo \emph{upload $\rightarrow$ encolar $\rightarrow$ GPT-4o $\rightarrow$ cachear $\rightarrow$ devolver} a mano no es viable. La Definition of Done del Sprint~2 ya exige tests \texttt{pytest} verdes con mock de OpenAI (\texttt{respx}) antes de considerar cerrada US-09.
+\item \textbf{Estimación de US-06 (5~SP).} La importación CSV se estimó como una historia ``de pegamento'' (parseo + validación + UI), pero la combinación de encoding variable, validación cruzada de CIF y casos de error parciales (líneas válidas mezcladas con inválidas) la convierte en una historia mediana, no pequeña. Para el Sprint~3 se descompondrá en ``parser CSV'' y ``UI de importación con feedback de errores''.
+\item \textbf{Dependencias rígidas entre historias.} En el Sprint~1, US-02 dependía de US-01, y US-06 dependía de US-05. El orden de ejecución quedó casi serializado, lo que magnificó el impacto de la ausencia de Camilo. El Sprint~2 separa explícitamente dos pistas paralelas (Marcos en el worker OCR, Lorena en catálogos y endpoint de pendientes) para que un atasco en una no detenga la otra.
+\end{itemize}
+
+\subsection{Deuda técnica reconocida}
+
+\begin{itemize}
+\item \textbf{Refresh tokens:} la sesión actual caduca a las 24~h y obliga a re-loguear. Aceptable para la simulación, no para producción.
+\item \textbf{Rate limiting en \texttt{/api/auth/login}:} dejado fuera del Sprint~1, abrir issue para Sprint~3.
+\item \textbf{Storage del OCR en disco local:} migrar a object storage cuando se levante un entorno multi-instancia.
+\item \textbf{Importación masiva con encoding detectado automáticamente} para US-06 cuando se retome.
+\end{itemize}
+
+% =============================================================
+% Fin de la sección Marcos
+% =============================================================
