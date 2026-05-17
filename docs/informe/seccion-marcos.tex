@@ -55,6 +55,19 @@ Tres aprendizajes técnicos quedaron documentados para no repetirse:
 \item \textbf{Dependencias rígidas entre historias.} En el Sprint~1, US-02 dependía de US-01, y US-06 dependía de US-05. El orden de ejecución quedó casi serializado, lo que magnificó el impacto de la ausencia de Camilo. El Sprint~2 separa explícitamente dos pistas paralelas (Marcos en el worker OCR, Lorena en catálogos y endpoint de pendientes) para que un atasco en una no detenga la otra.
 \end{itemize}
 
+\subsection{Privacy by Design como decisión consciente}
+
+Varias de las decisiones tomadas durante el Sprint~1 materializan, de forma deliberada, principios de \emph{Privacy by Design}:
+
+\begin{itemize}
+\item \textbf{Aislamiento por \texttt{empresa\_id} en JWT.} Impide que un endpoint sirva datos de otra organización por error de programación: la pertenencia se verifica en cada handler con la información del token, sin depender de filtros opcionales en la capa de datos.
+\item \textbf{Soft delete con \texttt{deleted\_at}.} Permite ejercer el derecho de supresión (\emph{right to erasure}) sin perder trazabilidad para auditoría legal o fiscal, conciliando RGPD con obligaciones contables.
+\item \textbf{Mensajes de error genéricos en \texttt{/api/auth/login}.} Devolver \texttt{Credenciales inválidas} sin distinguir entre usuario inexistente y contraseña incorrecta evita la enumeración de cuentas.
+\item \textbf{Mínimo necesario en el JWT.} El payload incluye únicamente \texttt{user\_id}, \texttt{empresa\_id} y \texttt{rol}; no se incrustan emails, nombres ni datos personales innecesarios.
+\end{itemize}
+
+Estas decisiones no se introdujeron como un requisito explícito, sino como una consecuencia de aplicar el principio de mínimo privilegio en cada capa. Quedan documentadas aquí como referencia para mantener el criterio en sprints futuros.
+
 \subsection{Deuda técnica reconocida}
 
 \begin{itemize}
