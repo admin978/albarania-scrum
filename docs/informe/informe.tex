@@ -11,6 +11,7 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{fancyhdr}
+\usepackage{float}
 
 \hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black}
 \titlespacing*{\section}{0pt}{1.2ex}{0.6ex}
@@ -23,7 +24,8 @@
 \fancyhead[R]{\small Metodologías Ágiles}
 \fancyfoot[C]{\thepage}
 
-\title{\textbf{AlbaranIA} --- Informe Sprint 1 \\ \large Metodologías Ágiles $\cdot$ Universidad Europea}
+\title{\textbf{AlbaranIA} --- Informe Sprint 1 \\
+\large Metodologías Ágiles $\cdot$ Universidad Europea}
 \author{Lorena López Bermúdez \and Marcos García Manzano \and Camilo Andrés Sánchez Bernal}
 \date{Abril--Mayo 2026}
 
@@ -34,24 +36,35 @@
 \section{Contexto y objetivo}
 % ============================================================
 
-\textbf{AlbaranIA} es una plataforma SaaS multi-tenant para digitalizar albaranes de proveedores mediante IA (GPT-4o Vision). El objetivo académico de este sprint es aplicar el marco Scrum en un equipo de 3~personas, documentando los eventos (Planning, Dailies, Review, Retrospectiva), gestionando artefactos (Product Backlog, Sprint Backlog, Incremento) y entregando un incremento funcional acotado a la base del sistema: autenticación, gestión de usuarios y catálogo de proveedores.
+AlbaranIA es una plataforma SaaS multi-tenant para digitalizar albaranes
+de proveedores mediante IA (GPT-4o Vision). Durante el Sprint~1 aplicamos
+el marco Scrum documentando sus eventos (Planning, Dailies, Review,
+Retrospectiva) y gestionando sus artefactos (Product Backlog, Sprint
+Backlog, Incremento). El incremento comprometido cubría la base del
+sistema: autenticación, gestión de usuarios y catálogo de proveedores.
 
-El proyecto se gestiona en Jira (tablero ALB, board~133) y GitHub (\texttt{albarania-scrum}). La comunicación del equipo se realiza mediante Slack (\texttt{\#albarania-scrum}) y WhatsApp.
+El proyecto se gestiona en Jira (tablero ALB, board~133) y GitHub
+(\texttt{albarania-scrum}). La coordinación del equipo se realizó
+principalmente por Slack (\texttt{\#albarania-scrum}) y WhatsApp.
 
 % ============================================================
 \section{Equipo y roles}
 % ============================================================
 
-Los roles fueron acordados por el equipo el 24 de abril de 2026 (Slack, \texttt{\#albarania-scrum}) y confirmados al iniciar el Sprint~1 en Jira:
+Los roles se acordaron el 24 de abril de 2026 por Slack y se registraron
+en Jira al abrir el Sprint~1:
 
 \begin{center}
 \begin{tabular}{llp{7cm}}
 \toprule
 \textbf{Miembro} & \textbf{Rol Scrum} & \textbf{Responsabilidades principales} \\
 \midrule
-Lorena López Bermúdez & Scrum Master & Facilitación de eventos, gestión de impedimentos, criterios de aceptación, transparencia de artefactos \\
-Marcos García Manzano & Product Owner + Developer & Priorización del backlog, redacción de historias de usuario, implementación técnica \\
-Camilo A. Sánchez Bernal & Developer & Asignado a US-04 y US-06 (sin participación activa --- impedimento documentado) \\
+Lorena López Bermúdez & Scrum Master &
+  Facilitación de eventos, gestión de impedimentos, criterios de aceptación, transparencia de artefactos \\
+Marcos García Manzano & Product Owner + Developer &
+  Priorización del backlog, redacción de historias de usuario, implementación técnica \\
+Camilo A. Sánchez Bernal & Developer &
+  Asignado a US-04 y US-06 (sin participación activa --- impedimento documentado) \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -60,7 +73,8 @@ Camilo A. Sánchez Bernal & Developer & Asignado a US-04 y US-06 (sin participac
 \section{Product Backlog}
 % ============================================================
 
-El Product Backlog se organizó en 6~épicas, priorizadas por valor de negocio:
+El Product Backlog se organizó en 6~épicas, priorizadas por valor de negocio.
+Para el Sprint~1 seleccionamos historias de E1 y E2:
 
 \begin{itemize}
 \item \textbf{E1 --- Autenticación y usuarios} (Alta): empresa, usuarios, login JWT, roles.
@@ -71,14 +85,19 @@ El Product Backlog se organizó en 6~épicas, priorizadas por valor de negocio:
 \item \textbf{E6 --- Dashboard} (Baja): métricas y reporting.
 \end{itemize}
 
-Para el Sprint~1 se seleccionaron 6~historias de las épicas E1 y E2, sumando 22~SP.
+\noindent\textit{Nota: el Product Backlog fue creado y refinado por el
+equipo AlbaranIA durante el Sprint~1, a partir de las épicas del proyecto
+y el análisis del dominio. No se basó en un backlog predefinido externo.}
 
 % ============================================================
 \section{Sprint Planning}
 % ============================================================
 
 \subsection{Sprint Goal}
-\emph{``Construir la base: alta de empresa, usuarios, proveedores y login funcional.''}
+
+\begin{center}
+\textit{``Construir la base: alta de empresa, usuarios, proveedores y login funcional.''}
+\end{center}
 
 \subsection{Historias seleccionadas (22~SP)}
 
@@ -99,9 +118,12 @@ ALB-6 & US-06 & Importación de proveedores desde CSV & 5 & Camilo \\
 \end{tabular}
 \end{center}
 
-Reparto inicial por persona: Lorena 8~SP $\cdot$ Marcos 6~SP $\cdot$ Camilo 8~SP. La asignación se acordó por autoorganización del equipo (WhatsApp, 15~abril; Slack, 15~abril) y se registró en Jira.
+Reparto inicial: Lorena 8~SP $\cdot$ Marcos 6~SP $\cdot$ Camilo 8~SP.
+La asignación se acordó por autoorganización del equipo (Slack y WhatsApp,
+15~abril) y se registró en Jira.
 
 \subsection{Definition of Done}
+
 \begin{itemize}
 \item Código funcional (o mockup/prototipo representativo).
 \item Revisado por al menos 1~compañero.
@@ -113,34 +135,48 @@ Reparto inicial por persona: Lorena 8~SP $\cdot$ Marcos 6~SP $\cdot$ Camilo 8~SP
 % ============================================================
 
 \subsection{Daily Scrums}
-Se celebraron reuniones breves por Slack (\texttt{\#albarania-scrum}) durante el sprint (21--29~abril). Desde la primera daily se detectó la ausencia del tercer miembro del equipo, que no participó en ninguna actividad del sprint. Este impedimento se registró formalmente y se gestionó siguiendo el ciclo de 5~pasos descrito en la asignatura (UA2-T01, sección~3.4).
+
+Las dailies se realizaron por Slack (\texttt{\#albarania-scrum}) del 21
+al 29 de abril. En la primera daily ya detectamos que Camilo no estaba
+participando. Lo registramos como impedimento y aplicamos el ciclo de
+gestión descrito en UA2-T01, sección~3.4.
 
 \subsection{Impedimento crítico: ausencia de un miembro del equipo}
 
-Durante el Sprint~1 se identificó un impedimento de naturaleza organizacional: el Developer asignado a US-04 y US-06 (8~SP) no participó activamente en ninguna actividad del sprint. Se realizaron al menos 7~intentos de contacto documentados en Slack y WhatsApp, sin obtener respuesta sostenida.
-
-La gestión siguió el ciclo de la asignatura (UA2-T01, sección~3.4):
+Camilo, asignado a US-04 y US-06 (8~SP), no participó en ninguna
+actividad del sprint. Tras reiterados intentos de contacto y
+ofrecimientos de participación por Slack y WhatsApp sin respuesta
+sostenida, lo gestionamos siguiendo el ciclo de UA2-T01, sección~3.4:
 
 \begin{enumerate}
-\item \textbf{Detección:} señalización desde la primera Daily Scrum ($<$24~h).
-\item \textbf{Clasificación:} organizacional, bloqueante, fuera del ámbito del equipo (Tabla~2, UA2-T01).
-\item \textbf{Escalado:} comunicación formal al tutor, quien avaló documentar la ausencia como impedimento crítico.
-\item \textbf{Resolución parcial:} el equipo se autoorganizó con 2~miembros activos. El PO/Developer asumió la carga técnica; la SM contribuyó con gestión de artefactos, criterios de aceptación y facilitación.
-\item \textbf{Cierre y aprendizaje:} integrado en la Retrospectiva con acciones concretas para el Sprint~2.
+\item \textbf{Detección:} desde la primera daily ($<$24~h).
+\item \textbf{Clasificación:} organizacional, bloqueante, fuera del
+  ámbito del equipo (Tabla~2, UA2-T01).
+\item \textbf{Escalado:} comunicación al tutor, quien avaló documentar
+  la ausencia como impedimento crítico.
+\item \textbf{Resolución parcial:} nos reorganizamos con dos miembros
+  activos. Marcos asumió la carga técnica; Lorena cubrió artefactos,
+  criterios de aceptación y facilitación.
+\item \textbf{Cierre y aprendizaje:} integrado en la Retrospectiva con
+  acciones concretas para el Sprint~2.
 \end{enumerate}
 
-La decisión de \textbf{no redistribuir forzosamente} las historias se fundamentó en el principio de autoorganización del equipo (UA2-T01, sección~4) y en evitar el antipatrón de comando-control encubierto (UA2-T01, sección~3.6).
+Decidimos no redistribuir forzosamente las historias de Camilo. Respetar
+la autoorganización del equipo (UA2-T01, sección~4) implicaba no imponer
+una solución desde arriba --- lo que la asignatura identifica como el
+antipatrón de comando-control encubierto (UA2-T01, sección~3.6).
 
 \subsection{Herramientas}
-Jira (tablero ALB, board~133), GitHub (repo \texttt{albarania-scrum}), Slack (\texttt{\#albarania-scrum}), WhatsApp (grupo de equipo). Convención de ramas \texttt{feature/US-XX-*} y commits en español.
+
+Jira (tablero ALB, board~133), GitHub (\texttt{albarania-scrum}),
+Slack (\texttt{\#albarania-scrum}), WhatsApp. Convención de ramas
+\texttt{feature/US-XX-*} y commits en español.
 
 % ============================================================
 \section{Sprint Review}
 % ============================================================
 
 \subsection{Incremento entregado}
-
-El Sprint~1 entregó un incremento funcional de \textbf{14~SP} con 4~historias completadas:
 
 \begin{center}
 \begin{tabular}{llcl}
@@ -158,30 +194,37 @@ US-06 & Importación de proveedores desde CSV & 5 & \textcolor{red!70!black}{Dev
 \end{tabular}
 \end{center}
 
-\textbf{Velocity:} 14/22~SP = 64\%. Las historias US-04 y US-06 fueron devueltas al Product Backlog con comentarios formales en Jira documentando la razón (impedimento crítico).
+\textbf{Velocity: 14/22~SP = 64\,\%.} Las historias US-04 y US-06
+volvieron al Product Backlog con comentarios formales en Jira
+documentando el impedimento.
 
 \subsection{Criterios de aceptación}
 
-La Scrum Master redactó 21~criterios de aceptación en formato Given-When-Then para las 6~historias, incluyendo casos de éxito (9), casos de error (7) y validaciones de permisos (5). Estos criterios fueron aprobados por el PO mediante Pull Request en GitHub.
+Redactamos 21 criterios en formato Given-When-Then para las 6~historias:
+9 casos de éxito, 7 de error y 5 de validación de permisos. El Product
+Owner los revisó y aprobó mediante Pull Request en GitHub (PR~\#1).
 
 \subsection{Feedback recibido}
-Se incorporó al backlog la historia \textbf{US-16: exportar proveedores a CSV} y se re-priorizó \textbf{US-09 (OCR)} como historia ancla del Sprint~2.
+
+Incorporamos al backlog la historia \textbf{US-16: exportar proveedores
+a CSV} y re-priorizamos \textbf{US-09 (OCR)} como historia ancla del
+Sprint~2.
 
 % ============================================================
 \section{Retrospectiva}
 % ============================================================
 
-Se aplicó la técnica \emph{Start--Stop--Continue} (UA2-T02, sección~6):
+Aplicamos la técnica \emph{Start--Stop--Continue} (UA2-T02, sección~6):
 
 \textbf{Start:}
 \begin{itemize}
-\item Definir criterios de aceptación en formato Given-When-Then durante el Planning.
-\item Política de reasignación si alguien falta a 2~dailies seguidos.
+\item Definir criterios de aceptación Given-When-Then durante el Planning.
+\item Política de reasignación si alguien falta a 2~dailies seguidas.
 \end{itemize}
 
 \textbf{Stop:}
 \begin{itemize}
-\item Asumir capacidad completa del equipo sin confirmación de disponibilidad.
+\item Asumir capacidad completa del equipo sin confirmar disponibilidad primero.
 \end{itemize}
 
 \textbf{Continue:}
@@ -191,11 +234,14 @@ Se aplicó la técnica \emph{Start--Stop--Continue} (UA2-T02, sección~6):
 \item Pair-review en Pull Requests.
 \end{itemize}
 
-\subsection{Acciones de mejora implementadas en Sprint~2}
+\subsection{Acciones de mejora en Sprint~2}
+
 \begin{itemize}
-\item Capacidad ajustada a 13.5~SP (por debajo de velocity) para dejar buffer.
-\item Pareo SM$\leftrightarrow$PO en arquitectura OCR (mitigación del bus factor).
-\item Protocolo de reincorporación documentado para el miembro ausente.
+\item Capacidad ajustada a 13,5~SP (por debajo de la velocity) para
+  dejar margen de seguridad.
+\item Pareo SM$\leftrightarrow$PO en la arquitectura OCR, para mitigar
+  el riesgo de bus factor.
+\item Protocolo de reincorporación documentado para Camilo.
 \end{itemize}
 
 % ============================================================
@@ -204,91 +250,113 @@ Se aplicó la técnica \emph{Start--Stop--Continue} (UA2-T02, sección~6):
 
 \subsection{Estado del sprint antes del cierre}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.48\textwidth]{01-backlog-pre-cierre.png}
 \hfill
 \includegraphics[width=0.48\textwidth]{02-tablero-board-sprint1.png}
-\caption{(a)~Vista del backlog con las 6~historias del Sprint~1: 4 en curso y 2 por hacer. (b)~Tablero Kanban mostrando el flujo de trabajo: Por Hacer (ALB-4, ALB-6), En Curso (ALB-1, ALB-2, ALB-3, ALB-5), Listo (vacío).}
+\caption{(a)~Vista del backlog con las 6~historias del Sprint~1: 4 en
+curso y 2 por hacer. (b)~Tablero Kanban mostrando el flujo de trabajo:
+Por Hacer (ALB-4, ALB-6), En Curso (ALB-1, ALB-2, ALB-3, ALB-5),
+Listo (vacío).}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{03-resumen-metricas.png}
-\caption{Panel de resumen: distribución de carga (Marcos 63\%, Lorena 38\%), progreso de épicas E1 y E2 al 67\%, y actividad reciente mostrando los comentarios de devolución.}
+\caption{Panel de resumen: distribución de carga (Marcos 63\,\%,
+Lorena 38\,\%), progreso de épicas E1 y E2 al 67\,\%, y actividad
+reciente con los comentarios de devolución.}
 \end{figure}
 
 \subsection{Documentación del impedimento}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.48\textwidth]{04-comentario-devolucion-ALB4.png}
 \hfill
 \includegraphics[width=0.48\textwidth]{05-comentario-devolucion-ALB6.png}
-\caption{Comentarios formales de devolución al Product Backlog: (a)~ALB-4 (US-04): impedimento crítico, avalado por tutor. (b)~ALB-6 (US-06): impedimento crítico, historia dependiente de ALB-5.}
+\caption{Comentarios formales de devolución al Product Backlog:
+(a)~ALB-4 (US-04): impedimento crítico, avalado por tutor.
+(b)~ALB-6 (US-06): impedimento crítico, historia dependiente de ALB-5.}
 \end{figure}
 
-\clearpage
 \subsection{Proceso de cierre del Sprint~1}
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.48\textwidth]{06-backlog-4-finalizadas.png}
+\includegraphics[width=0.45\textwidth]{06-backlog-4-finalizadas.png}
 \hfill
-\includegraphics[width=0.48\textwidth]{07-dialogo-cierre-nuevo-sprint.png}
+\includegraphics[width=0.45\textwidth]{07-dialogo-cierre-nuevo-sprint.png}
 
 \vspace{0.3em}
 
-\includegraphics[width=0.48\textwidth]{08-dialogo-cierre-backlog.png}
+\includegraphics[width=0.45\textwidth]{08-dialogo-cierre-backlog.png}
 \hfill
-\includegraphics[width=0.48\textwidth]{09-backlog-post-cierre.png}
-\caption{Secuencia de cierre: (a)~4 historias marcadas como Finalizada. (b)~Diálogo de cierre inicial (opción ``Nuevo sprint''). (c)~Selección de ``Backlog'' para devolver ALB-4 y ALB-6. (d)~Resultado: backlog post-cierre con las 2 historias devueltas.}
+\includegraphics[width=0.45\textwidth]{09-backlog-post-cierre.png}
+\caption{Secuencia de cierre: (a)~4 historias marcadas como Finalizada.
+(b)~Diálogo de cierre inicial (opción ``Nuevo sprint'').
+(c)~Selección de ``Backlog'' para devolver ALB-4 y ALB-6.
+(d)~Resultado: backlog post-cierre con las 2 historias devueltas.}
 \end{figure}
 
 \subsection{Velocity del Sprint~1}
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{10-velocity-chart.png}
-\caption{Informe de velocidad generado por Jira: 22~SP comprometidos (gris), 14~SP completados (verde). Velocity = 14~SP (64\%).}
+\caption{Informe de velocidad generado por Jira: 22~SP comprometidos
+(gris), 14~SP completados (verde). Velocity = 14~SP (64\,\%).}
 \end{figure}
 
 % ============================================================
 \section{Conclusiones}
 % ============================================================
 
-El Sprint~1 cumplió parcialmente el Sprint Goal, entregando un incremento funcional de 14~SP que cubre autenticación, gestión de usuarios y catálogo de proveedores. La velocity de 64\% no representa un fracaso sino información empírica que alimentó la planificación del Sprint~2, donde la capacidad se ajustó a 13.5~SP con un equipo de 2~miembros activos.
+El Sprint~1 cumplió parcialmente el Sprint Goal: entregamos 14~SP que
+cubren autenticación, gestión de usuarios y catálogo de proveedores.
+La velocity del 64\,\% no fue un fracaso --- fue información empírica.
+Nos sirvió directamente para ajustar la capacidad del Sprint~2 a
+13,5~SP con un equipo de dos miembros activos.
 
-El caso del impedimento crítico demostró la utilidad del ciclo de gestión de impedimentos (detectar $\rightarrow$ clasificar $\rightarrow$ escalar $\rightarrow$ resolver $\rightarrow$ aprender) y del principio de autoorganización: el equipo se adaptó sin intervención directiva de la Scrum Master, respetando los roles definidos en el marco Scrum.
+El impedimento de Camilo demostró que el ciclo de gestión funciona:
+detectar, clasificar, escalar, resolver y aprender. Nos reorganizamos
+sin necesidad de intervención directiva, respetando los roles del marco
+Scrum.
 
-Como lección clave, este sprint evidencia que Scrum no garantiza que todo salga según lo planificado, sino que proporciona un marco para inspeccionar, adaptar y mejorar de forma continua (UA2-T02, sección~8). La mejora observada en el Sprint~2 (US-07 cerrada en Day~5, US-11 mergeada en Day~8) confirma que el ciclo empírico funcionó.
+Lo más importante que aprendimos: Scrum no garantiza que todo salga
+según lo planificado. Lo que hace es darnos el marco para reaccionar.
+Como recoge la Guía Scrum, el proceso empírico se apoya en
+\textit{``inspección y adaptación continua''} \cite{scrumguide} ---
+y eso es exactamente lo que hicimos. La mejora en el Sprint~2
+(US-07 cerrada en Day~5, US-11 mergeada en Day~8) confirma que
+el ciclo funcionó.
 
 \vspace{1em}
 \noindent\textbf{Enlaces:}
 \begin{itemize}
 \item Repositorio: \url{https://github.com/admin978/albarania-scrum}
 \item Tablero Jira: \url{https://agente404.atlassian.net/jira/software/projects/ALB/boards/133}
-\item Pull Request criterios: \url{https://github.com/admin978/albarania-scrum/pull/1}
+\item PR criterios de aceptación: \url{https://github.com/admin978/albarania-scrum/pull/1}
 \end{itemize}
-% ============================================================
-\section*{Referencias}
-% ============================================================
 
+% ============================================================
 \begin{thebibliography}{9}
+% ============================================================
 
 \bibitem{scrumguide}
 Schwaber, K., \& Sutherland, J. (2020). \textit{The Scrum Guide}.
 \url{https://scrumguides.org/scrum-guide.html}
 
 \bibitem{rubin}
-Rubin, K. S. (2012). \textit{Essential Scrum: A Practical Guide to the
+Rubin, K.~S. (2012). \textit{Essential Scrum: A Practical Guide to the
 Most Popular Agile Process}. Addison-Wesley.
 
 \bibitem{cohn}
 Cohn, M. (2025). \textit{Mountain Goat Software: Scrum and Agile}.
 \url{https://www.mountaingoatsoftware.com/agile/scrum}
 
-\bibitem{manifesto}
+\bibitem{beck}
 Beck, K., et al. (2001). \textit{Manifesto for Agile Software Development}.
 \url{https://agilemanifesto.org}
 
