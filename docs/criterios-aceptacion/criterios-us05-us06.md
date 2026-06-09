@@ -96,15 +96,19 @@ para verificación de datos oficiales.
 
 ## Resumen estadístico
 
-| Historia | SP | Criterios | Casos éxito | Casos error | Validaciones |
-|---|---|---|---|---|---|
-| US-01 Crear empresa | 5 | 3 | 1 | 2 | Email + CIF |
-| US-02 Alta usuarios | 3 | 3 | 1 | 1 | 1 permisos |
-| US-03 Login | 3 | 4 | 1 | 2 | 1 token |
-| US-04 Panel principal | 3 | 3 | 2 | 0 | 1 permisos |
-| US-05 CRUD proveedores | 3 | 5 | 1 | 2 | 1 permisos + 1 caso límite |
-| US-06 Importar CSV | 5 | 3 | 1 + 1 parcial | 0 | 1 permisos |
-| **TOTAL** | **22** | **21** | **9** | **7** | **5** |
+| Historia | SP | Criterios | Casos éxito | Casos error |
+|---|---|---|---|---|
+| US-01 Crear empresa | 5 | 3 | 1 | 2 |
+| US-02 Alta usuarios | 3 | 3 | 1 | 2 |
+| US-03 Login | 3 | 4 | 1 | 3 |
+| US-04 Panel principal | 3 | 3 | 2 | 1 |
+| US-05 CRUD proveedores | 3 | 5 | 2 | 3 |
+| US-06 Importar CSV | 5 | 3 | 2 (1 parcial) | 1 |
+| **TOTAL** | **22** | **21** | **9** | **12** |
+
+> **Nota:** recuento corregido tras la revisión de Marcos en el PR #5.
+> Los criterios de permisos por rol se contabilizan como casos de error
+> (deniegan una acción), no como categoría aparte. 9 + 12 = 21 criterios.
 
 ---
 
@@ -127,3 +131,20 @@ nombres concretos — reproducibles para testing.
 
 **Autor:** Lorena López Bermúdez (Scrum Master)  
 **Fecha:** 4 mayo 2026
+
+---
+
+## Mejoras futuras identificadas en revisión
+
+Surgidas del code review de Marcos (PR #5):
+
+- **Validación de CIF con dígito de control:** los criterios actuales
+  validan el *formato* del CIF (letra + dígitos), pero no el dígito de
+  control oficial. Un "B00000000" pasaría el regex siendo inválido. En
+  una iteración futura debería comprobarse el dígito de control según
+  el algoritmo de la AEAT, no solo la forma.
+
+- **Criterios explícitos de campos vacíos:** conviene añadir criterios
+  Given-When-Then dedicados a la validación de campos obligatorios vacíos
+  (nombre, email, etc.) de forma sistemática en todas las historias, no
+  solo donde aparece de forma incidental (como en US-06).
