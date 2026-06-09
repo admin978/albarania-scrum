@@ -63,3 +63,18 @@
     THEN el sistema muestra "No tienes permisos para esta acción.
          Solo los Admins pueden crear usuarios"
          y redirige al panel principal
+---
+
+## Nota de seguridad — enumeración de usuarios (revisión PR #5)
+
+Decisión de diseño consciente sobre el tradeoff seguridad/UX:
+
+- En **login** (US-03) los mensajes de error son genéricos
+  ("Email o contraseña incorrectos") para impedir enumeración de usuarios.
+- En **registro de empresa** (US-01 C3) y **alta de usuario** (US-02 C2)
+  los mensajes sí son específicos ("Este email ya está registrado"),
+  porque la claridad de UX en el alta es prioritaria. Esto deja una vía
+  de enumeración abierta en esos formularios.
+- **Mitigación prevista:** aplicar *rate-limiting* en los endpoints de
+  registro y alta para dificultar la enumeración automatizada, sin
+  sacrificar la claridad del mensaje para usuarios legítimos.
