@@ -9,8 +9,8 @@ Simulación de un sprint Scrum completo para construir **AlbaranIA**: una plataf
 | Miembro | Rol |
 |---------|-----|
 | Lorena López Bermúdez | Scrum Master |
-| Marcos García Manzano | Product Owner |
-| Camilo | Developer |
+| Marcos García Manzano | Product Owner + Developer |
+| Camilo | Developer (no participante) |
 
 
 
