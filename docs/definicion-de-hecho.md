@@ -20,3 +20,13 @@ Una historia está "Hecha" cuando:
 - Maneja los casos de error definidos en los criterios (mensaje, qué NO hace,
   dónde queda el usuario).
 - No introduce regresiones en historias ya cerradas.
+
+## A nivel de Sprint
+
+Un sprint está "Hecho" cuando:
+
+- Todas las historias comprometidas están "Hechas" o explícitamente devueltas al
+  Product Backlog con justificación (p. ej. US-04 y US-06 del Sprint 1).
+- El incremento es demostrable en la Sprint Review.
+- La retrospectiva está documentada con acciones de mejora.
+- El backlog queda actualizado y repriorizado para el siguiente sprint.
