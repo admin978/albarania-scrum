@@ -30,3 +30,19 @@ Un sprint está "Hecho" cuando:
 - El incremento es demostrable en la Sprint Review.
 - La retrospectiva está documentada con acciones de mejora.
 - El backlog queda actualizado y repriorizado para el siguiente sprint.
+
+## Checklist operativo (antes de mover a "Hecho")
+
+- [ ] Criterios de aceptación verificados.
+- [ ] PR aprobado por un compañero (code review).
+- [ ] Sin secretos ni credenciales en el código.
+- [ ] Filtrado por `empresa_id` en todas las consultas de la historia.
+- [ ] Mensajes de error revisados (UX + seguridad).
+- [ ] Documentación/notas actualizadas si la historia lo requiere.
+
+## Relación con los criterios de aceptación
+
+Los criterios de aceptación (`docs/criterios-aceptacion/`) son la entrada de la
+DoD a nivel historia: una historia no puede estar "Hecha" si alguno de sus
+criterios GWT falla. La DoD añade, por encima, las garantías transversales
+(revisión por pares, seguridad, no-regresión) que aplican a todo el producto.
