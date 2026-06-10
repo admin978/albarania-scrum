@@ -37,6 +37,7 @@ Un sprint está "Hecho" cuando:
 - [ ] PR aprobado por un compañero (code review).
 - [ ] Sin secretos ni credenciales en el código.
 - [ ] Filtrado por `empresa_id` en todas las consultas de la historia.
+- [ ] Tests automáticos cuando la historia toque lógica de negocio.
 - [ ] Mensajes de error revisados (UX + seguridad).
 - [ ] Documentación/notas actualizadas si la historia lo requiere.
 
